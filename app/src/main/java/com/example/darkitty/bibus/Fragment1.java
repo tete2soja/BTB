@@ -58,39 +58,22 @@ public class Fragment1 extends Fragment {
 
         try {
 
-            List<Map<String, String>> data = new ArrayList<Map<String, String>>();
-            try{
-                // Create a new HTTP Client
-                DefaultHttpClient defaultClient = new DefaultHttpClient();
-                // Setup the get request
-                HttpGet httpGetRequest = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getPerturbations?format=json");
+            List<Map<String, String>> data = new ArrayList<Map<String, String>>();;
 
-                // Execute the request in the client
-                HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
-                // Grab the response
-                BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
-                String json = reader.readLine();
+            // Instantiate a JSON object from the request response
+            JSONArray jr = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getPerturbations?format=json");
 
-                // Instantiate a JSON object from the request response
-                JSONArray jr = new JSONArray(json);
-
-                for(int i = 0; i < jr.length(); i++) {
-                    JSONObject object = (JSONObject) jr.getJSONObject(i);
-                    Map<String, String> dat = new HashMap<String, String>(2);
-                    dat.put("date", object.getString("Description"));
-                    dat.put("title", object.getString("Title"));
-                    data.add(dat);
-                }
-
-            } catch(Exception e){
-                // In your production code handle any errors and catch the individual exceptions
-                e.printStackTrace();
+            for(int i = 0; i < jr.length(); i++) {
+                JSONObject object = (JSONObject) jr.getJSONObject(i);
+                Map<String, String> dat = new HashMap<String, String>(2);
+                dat.put("date", object.getString("Description"));
+                dat.put("title", object.getString("Title"));
+                data.add(dat);
             }
 
             ListView listView = (ListView) rootView.findViewById(R.id.listPerturbations);
             SimpleAdapter adapter = new SimpleAdapter(rootView.getContext(), data, android.R.layout.simple_list_item_2, new String[] {"title", "date"}, new int[] {android.R.id.text1, android.R.id.text2});
             listView.setAdapter(adapter);
-
 
         } catch (Exception e) {
             e.printStackTrace();

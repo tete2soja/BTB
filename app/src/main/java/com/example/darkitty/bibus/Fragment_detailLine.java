@@ -66,21 +66,9 @@ public class Fragment_detailLine  extends Fragment {
         getActivity().setTitle("Ligne n° " + this.idLine);
 
         try{
-            // Create a new HTTP Client
-            DefaultHttpClient defaultClient = new DefaultHttpClient();
-            // Setup the get request
-            HttpGet httpGetRequest = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
-
-            // Execute the request in the client
-            HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
-            // Grab the response
-            BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
-            String json = reader.readLine();
-
-
             List<String> list = new ArrayList<String>();
             // Instantiate a JSON object from the request response
-            JSONArray jr = new JSONArray(json);
+            JSONArray jr = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
 
             for(int i = 0; i < jr.length(); i++) {
                 JSONObject object = (JSONObject) jr.getJSONObject(i);
@@ -96,29 +84,19 @@ public class Fragment_detailLine  extends Fragment {
 
 
             List<String> data = new ArrayList<String>();
-                // Create a new HTTP Client
-                DefaultHttpClient defaultClient2 = new DefaultHttpClient();
-                // Setup the get request
-                HttpGet httpGetRequest2 = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.getSelectedItem().toString());
 
-                // Execute the request in the client
-                HttpResponse httpResponse2 = defaultClient2.execute(httpGetRequest2);
-                // Grab the response
-                BufferedReader reader2 = new BufferedReader(new InputStreamReader(httpResponse2.getEntity().getContent(), "UTF-8"));
-                String json2 = reader2.readLine();
+            // Instantiate a JSON object from the request response
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.getSelectedItem().toString());
 
-                // Instantiate a JSON object from the request response
-                JSONArray jr2 = new JSONArray(json2);
+            for(int i = 0; i < jr2.length(); i++) {
+                JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
+                data.add(object2.getString("Stop_name"));
+            }
 
-                for(int i = 0; i < jr2.length(); i++) {
-                    JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
-                    data.add(object2.getString("Stop_name"));
-                }
-
-                ListView listView2 = (ListView) rootView.findViewById(R.id.listViewStop);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
-                listView2.setAdapter(adapter);
-                listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            ListView listView2 = (ListView) rootView.findViewById(R.id.listViewStop);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
+            listView2.setAdapter(adapter);
+            listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Spinner terminus = (Spinner) getView().findViewById(R.id.spinnerStopDetail);
                         TextView tmp = ((TextView) view);
@@ -131,7 +109,7 @@ public class Fragment_detailLine  extends Fragment {
                         i.putExtras(extras);
                         startActivity(i);
                     }
-                });
+            });
 
         } catch(Exception e){
             // In your production code handle any errors and catch the individual exceptions

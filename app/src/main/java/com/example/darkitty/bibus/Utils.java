@@ -2,35 +2,39 @@ package com.example.darkitty.bibus;
 
 import android.app.Activity;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * Created by nlegall on 12/06/2015.
  */
 public class Utils {
-    private static int cTheme = 0;
-    public static void onActivityCreateSetTheme(Activity activity)
-
+    public static JSONArray getJSON(String url)
     {
-
-        switch (cTheme)
-
+        JSONArray jr = null;
+        try
         {
+            DefaultHttpClient defaultClient = new DefaultHttpClient();
+            // Setup the get request
+            HttpGet httpGetRequest = new HttpGet(url);
 
-            default:
+            // Execute the request in the client
+            HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
+            // Grab the response
+            BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
+            String json = reader.readLine();
 
-            case 0:
-
-                activity.setTheme(R.style.AppTheme);
-                cTheme = 1;
-                break;
-
-            case 1:
-
-                activity.setTheme(R.style.AppThemeDark);
-                cTheme = 0;
-                break;
-
+            // Instantiate a JSON object from the request response
+            jr = new JSONArray(json);
         }
-
+        catch (Exception e) {}
+        return jr;
     }
-
 }

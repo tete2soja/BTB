@@ -35,6 +35,4 @@ public class Refresh {
             e.getMessage();
         }
     }
-
-
 }

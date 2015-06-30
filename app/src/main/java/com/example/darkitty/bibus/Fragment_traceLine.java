@@ -77,51 +77,18 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
         ArrayList<OverlayItem> overlayItemArray = new ArrayList<OverlayItem>();
 
         try {
-            // Create a new HTTP Client
-            DefaultHttpClient defaultClient = new DefaultHttpClient();
-            // Setup the get request
-            HttpGet httpGetRequest = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
-
-            // Execute the request in the client
-            HttpResponse httpResponse = defaultClient.execute(httpGetRequest);
-            // Grab the response
-            BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
-            String json = reader.readLine();
-            JSONArray tmp = new JSONArray(json);
+            JSONArray tmp = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
             String terminus = tmp.getJSONObject(0).getString("Trip_headsign");
 
-            // Instantiate a JSON object from the request response
-            JSONArray jr = new JSONArray(json);
-            DefaultHttpClient defaultClient2 = new DefaultHttpClient();
-            // Setup the get request
-            HttpGet httpGetRequest2 = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus);
-
-            // Execute the request in the client
-            HttpResponse httpResponse2 = defaultClient2.execute(httpGetRequest2);
-            // Grab the response
-            BufferedReader reader2 = new BufferedReader(new InputStreamReader(httpResponse2.getEntity().getContent(), "UTF-8"));
-            String json2 = reader2.readLine();
-
-            // Instantiate a JSON object from the request response
-            JSONArray jr2 = new JSONArray(json2);
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus);
 
             for(int i = 1; i < jr2.length(); i++) {
                 JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
                 waypoints.add(new GeoPoint(Double.valueOf(object2.getString("Stop_lat")), Double.valueOf(object2.getDouble("Stop_lon"))));
             }
 
-            DefaultHttpClient defaultClient3 = new DefaultHttpClient();
-            // Setup the get request
-            HttpGet httpGetRequest3 = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getGeolocatedVehiclesPosition?format=json&route_id="+product+"&trip_headsign="+terminus);
-
-            // Execute the request in the client
-            HttpResponse httpResponse3 = defaultClient3.execute(httpGetRequest3);
-            // Grab the response
-            BufferedReader reader3 = new BufferedReader(new InputStreamReader(httpResponse3.getEntity().getContent(), "UTF-8"));
-            String json3 = reader3.readLine();
-
             // Instantiate a JSON object from the request response
-            JSONArray jr3 = new JSONArray(json3);
+            JSONArray jr3 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getGeolocatedVehiclesPosition?format=json&route_id="+product+"&trip_headsign="+terminus);
             Resources res = getResources();
             for(int i = 1; i < jr3.length(); i++) {
                 JSONObject object = (JSONObject) jr3.getJSONObject(i);

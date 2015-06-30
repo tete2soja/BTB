@@ -72,32 +72,16 @@ public class DetailStop extends ActionBarActivity {
 
 
             List<String> data = new ArrayList<String>();
-            try{
-                // Create a new HTTP Client
-                DefaultHttpClient defaultClient2 = new DefaultHttpClient();
-                // Setup the get request
-                HttpGet httpGetRequest2 = new HttpGet("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getRemainingTimes?format=json&route_id="+idLigne+"&trip_headsign="+destination+"&stop_name="+stop);
 
-                // Execute the request in the client
-                HttpResponse httpResponse2 = defaultClient2.execute(httpGetRequest2);
-                // Grab the response
-                BufferedReader reader2 = new BufferedReader(new InputStreamReader(httpResponse2.getEntity().getContent(), "UTF-8"));
-                String json2 = reader2.readLine();
+            // Instantiate a JSON object from the request response
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getRemainingTimes?format=json&route_id="+idLigne+"&trip_headsign="+destination+"&stop_name="+stop);
 
-                // Instantiate a JSON object from the request response
-                JSONArray jr2 = new JSONArray(json2);
+            TextView next = (TextView) findViewById(R.id.nextPassage);
+            TextView next2 = (TextView) findViewById(R.id.reamingTime);
 
-                TextView next = (TextView) findViewById(R.id.nextPassage);
-                TextView next2 = (TextView) findViewById(R.id.reamingTime);
-
-                JSONObject object2 = (JSONObject) jr2.getJSONObject(0);
-                next.setText(object2.getString("Arrival_time"));
-                next2.setText(object2.getString("Remaining_time"));
-
-            } catch(Exception e){
-                // In your production code handle any errors and catch the individual exceptions
-                e.printStackTrace();
-            }
+            JSONObject object2 = (JSONObject) jr2.getJSONObject(0);
+            next.setText(object2.getString("Arrival_time"));
+            next2.setText(object2.getString("Remaining_time"));
 
             Button btn = (Button) findViewById(R.id.btnSubmit);
             btn.setOnClickListener(new View.OnClickListener() {
