@@ -1,5 +1,6 @@
 package com.example.darkitty.bibus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -92,7 +93,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivityForResult(i, 1);
         }
         else if (id == R.id.action_refresh) {
             f2.refreshLines();
