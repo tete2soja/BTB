@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bibus</string>
+    <string name="action_refresh">Refrescar</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_theme">Thema</string>
+    <string name="hello">Hola</string>
+    <string name="pref_header_general">General</string>
+    <string name="pref_header_notifications">Notificaciones</string>
+    <string name="pref_lang"></string>
+    <string name="pref_ringtone_silent">Silencioso</string>
+    <string name="title_activity_detail_line">DetailLine</string>
+    <string name="title_activity_detail_line_tab">DetailLine_tab</string>
+    <string name="title_activity_detail_stop">DetailStop</string>
+    <string name="title_activity_main">Main</string>
+    <string name="title_activity_routing">Routing</string>
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="title_section2">Linea</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Disturbios</string>
+    <string name="title_activity_tets_tab">TetsTab</string>
+    <string name="title_activity_test_maps">testMaps</string>
+    <string name="title">Mi aplicacion</string>
+</resources>
