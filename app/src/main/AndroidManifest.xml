@@ -37,10 +37,6 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".DetailLine"
-            android:label="@string/title_activity_detail_line" >
-        </activity>
-        <activity
             android:name=".DetailStop"
             android:label="@string/title_activity_detail_stop" >
         </activity>
