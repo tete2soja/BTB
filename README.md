@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/Darkitty/Bibus.png)](https://travis-ci.org/Darkitty/Bibus)
