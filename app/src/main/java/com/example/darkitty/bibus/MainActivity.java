@@ -137,7 +137,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             startActivityForResult(i, SETTINGS_RESULT);
         }
         else if (id == R.id.action_refresh) {
-            f2.refreshLines();
+            //f2.refreshLines();
         }
 
         return super.onOptionsItemSelected(item);
@@ -173,6 +173,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if(position == 0)
+                return Fragment3.newInstance(position + 1);
+            else if(position == 1)
                 return Fragment1.newInstance(position + 1);
             else
                 return Fragment2.newInstance(position + 1);
@@ -181,7 +183,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -189,8 +191,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.title_section3).toUpperCase(l);
                 case 1:
+                    return getString(R.string.title_section1).toUpperCase(l);
+                case 2:
                     return getString(R.string.title_section2).toUpperCase(l);
             }
             return null;

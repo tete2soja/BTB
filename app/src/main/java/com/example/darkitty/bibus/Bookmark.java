@@ -23,8 +23,10 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,12 +86,20 @@ public class Bookmark extends Activity {
                 SparseBooleanArray sp = lv.getCheckedItemPositions();
                 StringBuffer str = new StringBuffer();
                 for(int i=0;i<sp.size();i++){
-                    if(sp.valueAt(i)==true){
-                        String s = ((TextView) lv.getChildAt(i)).getText().toString();
-                        str = str.append(" "+s);
-                    }
+                        //String s = ((TextView) lv.getChildAt(sp.keyAt(i))).getText().toString();
+                        str = str.append(sp.keyAt(i)+"\n");
                 }
-                Toast.makeText(Bookmark.this, "Selected items are "+str.toString(), Toast.LENGTH_LONG).show();
+                File sdcard = new File("/data/data/com.darkitty.bibus/");
+                File file = new File(sdcard, "bookmarks.txt");
+                try {
+                    BufferedWriter wrtier = new BufferedWriter(new FileWriter(file));
+                    wrtier.write(str.toString());
+                    wrtier.close();
+                    Toast.makeText(Bookmark.this, "Bookmarks saved!", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(Bookmark.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
