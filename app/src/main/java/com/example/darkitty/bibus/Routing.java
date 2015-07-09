@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import com.example.darkitty.bibus.R;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.location.NominatimPOIProvider;
+import org.osmdroid.bonuspack.location.POI;
+import org.osmdroid.bonuspack.overlays.FolderOverlay;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
@@ -65,6 +68,12 @@ public class Routing extends ActionBarActivity implements LocationListener {
         Polyline roadOverlay = RoadManager.buildRoadOverlay(road, this);
         mMap.getOverlays().add(roadOverlay);
         //mMap.invalidate();
+
+        NominatimPOIProvider poiProvider = new NominatimPOIProvider();
+        ArrayList<POI> pois = poiProvider.getPOICloseTo(gp, "garage", 50, 0.1);
+        FolderOverlay poiMarkers = new FolderOverlay(this);
+        mMap.getOverlays().add(poiMarkers);
+
         mapController.setCenter(endPoint);
         mapController.setZoom(13);
         mMap.setMultiTouchControls(true);
