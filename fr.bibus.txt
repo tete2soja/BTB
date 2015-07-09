@@ -1,0 +1,29 @@
+Categories:Transport
+License:MIT
+Web Site:https://github.com/Darkitty/Bibus/wiki
+Source Code:https://github.com/Darkitty/Bibus
+Issue Tracker:https://github.com/Darkitty/Bibus/issues
+
+Web Site : https://xxxxx.nlegall.fr/
+
+Auto Name:Ornidroid
+AntiFeatures:NonFreeNet
+Summary:Public transport informations
+Description:
+Get all informations about bus and tram of Brest (29, France) like :
+* Disturbances
+* Schedule in real time
+* Location of bus and tram
+* Itinerary between a stop and you
+.
+
+Repo Type:git
+Repo:https://github.com/Darkitty/Bibus.git
+
+Build:1.0
+    commit=v1.0
+    subdir=app
+    extlibs=commons-lang3-3.2.2.jar,gson-2.2.4.jar,osmbonuspack_v5.1.jar,osmdroid-android-4.3.jar,slf4j-android-1.5.8.jar
+
+Auto Update Mode:None
+Update Check Mode:Static
