@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:weightSum="1">
+
+    <ListView
+        android:id="@+id/bookmarkList"
+        android:layout_width="match_parent"
+        android:layout_height="403dp"
+        android:layout_weight="0.83"
+        android:clickable="true">
+    </ListView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveButton"
+        android:id="@+id/saveBokmarks"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

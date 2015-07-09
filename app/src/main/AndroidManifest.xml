@@ -48,6 +48,10 @@
             android:name=".DetailLine_tab"
             android:label="@string/title_activity_detail_line_tab" >
         </activity>
+        <activity
+            android:name=".Bookmark"
+            android:label="@string/title_activity_bookmark" >
+        </activity>
     </application>
 
 </manifest>

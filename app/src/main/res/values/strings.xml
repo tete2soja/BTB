@@ -19,4 +19,6 @@
     <string name="title_activity_routing">Routing</string>
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_detail_line_tab">DetailLine_tab</string>
+    <string name="title_activity_bookmark">Bookmark</string>
+    <string name="saveButton">Save</string>
 </resources>
