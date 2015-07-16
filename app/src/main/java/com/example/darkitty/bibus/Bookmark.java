@@ -27,6 +27,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,9 +44,10 @@ public class Bookmark extends Activity {
 
         List<String> lines = new ArrayList<String>();
         try{
-            File sdcard = new File("/data/data/com.darkitty.bibus/");
-            File file = new File(sdcard, "lines.json");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            InputStream inputStream = getApplicationContext().getResources().openRawResource(R.raw.lines);
+            //File sdcard = new File("/data/data/com.darkitty.bibus/");
+            //File file = new File(sdcard, "lines.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             String json = reader.readLine();
 
             // Instantiate a JSON object from the request response
@@ -89,8 +92,9 @@ public class Bookmark extends Activity {
                         //String s = ((TextView) lv.getChildAt(sp.keyAt(i))).getText().toString();
                         str = str.append(sp.keyAt(i)+"\n");
                 }
-                File sdcard = new File("/data/data/com.darkitty.bibus/");
-                File file = new File(sdcard, "bookmarks.txt");
+                /*File sdcard = new File("/data/data/com.darkitty.bibus/");
+                File file = new File(sdcard, "bookmarks.txt");*/
+                File file = new File(getApplicationContext().getFilesDir(), "bookmarks.txt");
                 try {
                     BufferedWriter wrtier = new BufferedWriter(new FileWriter(file));
                     wrtier.write(str.toString());

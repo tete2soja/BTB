@@ -86,7 +86,7 @@ public class Fragment_detailLine  extends Fragment {
             List<String> data = new ArrayList<String>();
 
             // Instantiate a JSON object from the request response
-            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.getSelectedItem().toString());
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.getSelectedItem().toString().replace(" ", "%20"));
 
             for(int i = 0; i < jr2.length(); i++) {
                 JSONObject object2 = (JSONObject) jr2.getJSONObject(i);

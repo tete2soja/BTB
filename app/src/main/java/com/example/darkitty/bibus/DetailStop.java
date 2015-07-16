@@ -43,9 +43,9 @@ public class DetailStop extends ActionBarActivity {
         Intent in = getIntent();
         // getting attached intent data
         Bundle extras = in.getExtras();
-        idLigne = extras.getString("lineNumber");
-        stop = extras.getString("departure");
-        destination = extras.getString("destination");
+        idLigne = extras.getString("lineNumber").replace(" ", "%20");
+        stop = extras.getString("departure").replace(" ", "%20");
+        destination = extras.getString("destination".replace(" ", "%20"));
 
         try{
 

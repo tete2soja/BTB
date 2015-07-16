@@ -19,6 +19,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,15 +63,17 @@ public class Fragment3 extends Fragment {
 
         try {
 
-            File sdcard = new File("/data/data/com.darkitty.bibus/");
+            /*File sdcard = new File("/data/data/com.darkitty.bibus/");
             File file = new File(sdcard, "bookmarks.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));*/
+            File file = new File(rootView.getContext().getFilesDir(), "bookmarks.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             ArrayList<String> json = new ArrayList<String>();
             String line;
 
-            File sdcard2 = new File("/data/data/com.darkitty.bibus/");
-            File file2 = new File(sdcard, "lines.json");
-            BufferedReader reader2 = new BufferedReader(new FileReader(file2));
+
+            InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
+            BufferedReader reader2 = new BufferedReader(new InputStreamReader(inputStream));
             String json2 = reader2.readLine();
 
             // Instantiate a JSON object from the request response

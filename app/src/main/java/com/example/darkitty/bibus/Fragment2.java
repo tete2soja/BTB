@@ -32,6 +32,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -95,9 +96,8 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
             List<Map<String, String>> data = new ArrayList<Map<String, String>>();
             List<RowItem> rowItems = rowItems = new ArrayList<RowItem>();
             try{
-                File sdcard = new File("/data/data/com.darkitty.bibus/");
-                File file = new File(sdcard, "lines.json");
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+                InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 String json = reader.readLine();
 
                 // Instantiate a JSON object from the request response

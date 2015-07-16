@@ -80,7 +80,7 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
             JSONArray tmp = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
             String terminus = tmp.getJSONObject(0).getString("Trip_headsign");
 
-            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus);
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.replace(" ", "%20"));
 
             for(int i = 1; i < jr2.length(); i++) {
                 JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
@@ -88,7 +88,7 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
             }
 
             // Instantiate a JSON object from the request response
-            JSONArray jr3 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getGeolocatedVehiclesPosition?format=json&route_id="+product+"&trip_headsign="+terminus);
+            JSONArray jr3 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getGeolocatedVehiclesPosition?format=json&route_id="+product+"&trip_headsign="+terminus.replace(" ", "%20"));
             Resources res = getResources();
             for(int i = 1; i < jr3.length(); i++) {
                 JSONObject object = (JSONObject) jr3.getJSONObject(i);
