@@ -1,26 +1,15 @@
-package com.example.darkitty.bibus;
+package com.example.darkitty.btb;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
@@ -33,10 +22,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by nlegall on 26/06/2015.
@@ -78,7 +64,11 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
 
         try {
             JSONArray tmp = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=" + product);
-            String terminus = tmp.getJSONObject(0).getString("Trip_headsign");
+            String terminus;
+            if(product.equals("A"))
+                terminus = tmp.getJSONObject(1).getString("Trip_headsign");
+            else
+                terminus = tmp.getJSONObject(0).getString("Trip_headsign");
 
             JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.replace(" ", "%20"));
 

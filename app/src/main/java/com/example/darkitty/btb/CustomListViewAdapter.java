@@ -1,4 +1,4 @@
-package com.example.darkitty.bibus;
+package com.example.darkitty.btb;
 
 /**
  * Created by nlegall on 19/06/2015.

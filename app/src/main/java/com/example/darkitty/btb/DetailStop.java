@@ -1,4 +1,4 @@
-package com.example.darkitty.bibus;
+package com.example.darkitty.btb;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,19 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
-import org.w3c.dom.Text;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +68,7 @@ public class DetailStop extends ActionBarActivity {
             List<String> data = new ArrayList<String>();
 
             // Instantiate a JSON object from the request response
-            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getRemainingTimes?format=json&route_id="+idLigne+"&trip_headsign="+destination+"&stop_name="+stop);
+            JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getRemainingTimes?format=json&route_id="+idLigne+"&trip_headsign="+destination.replace(" ", "%20")+"&stop_name="+stop.replace(" ", "%20"));
 
             TextView next = (TextView) findViewById(R.id.nextPassage);
             TextView next2 = (TextView) findViewById(R.id.reamingTime);

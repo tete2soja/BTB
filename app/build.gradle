@@ -6,7 +6,7 @@ android {
     compileSdkVersion 22
     buildToolsVersion "23.0.0 rc2"
     defaultConfig {
-        applicationId 'com.darkitty.bibus'
+        applicationId 'com.darkitty.btb'
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1

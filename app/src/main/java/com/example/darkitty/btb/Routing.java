@@ -1,8 +1,7 @@
-package com.example.darkitty.bibus;
+package com.example.darkitty.btb;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,13 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.darkitty.bibus.R;
-
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.location.NominatimPOIProvider;
 import org.osmdroid.bonuspack.location.POI;
 import org.osmdroid.bonuspack.overlays.FolderOverlay;
-import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
 import org.osmdroid.bonuspack.routing.Road;
@@ -69,10 +65,10 @@ public class Routing extends ActionBarActivity implements LocationListener {
         mMap.getOverlays().add(roadOverlay);
         //mMap.invalidate();
 
-        NominatimPOIProvider poiProvider = new NominatimPOIProvider();
+        /*NominatimPOIProvider poiProvider = new NominatimPOIProvider();
         ArrayList<POI> pois = poiProvider.getPOICloseTo(gp, "garage", 50, 0.1);
         FolderOverlay poiMarkers = new FolderOverlay(this);
-        mMap.getOverlays().add(poiMarkers);
+        mMap.getOverlays().add(poiMarkers);*/
 
         mapController.setCenter(endPoint);
         mapController.setZoom(13);

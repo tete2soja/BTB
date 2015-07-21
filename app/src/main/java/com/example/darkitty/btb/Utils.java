@@ -1,6 +1,4 @@
-package com.example.darkitty.bibus;
-
-import android.app.Activity;
+package com.example.darkitty.btb;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,8 +7,6 @@ import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by nlegall on 12/06/2015.
