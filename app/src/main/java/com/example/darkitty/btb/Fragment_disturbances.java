@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class Fragment1 extends Fragment {
+public class Fragment_disturbances extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -35,15 +35,15 @@ public class Fragment1 extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Fragment1 newInstance(int sectionNumber) {
-        Fragment1 fragment = new Fragment1();
+    public static Fragment_disturbances newInstance(int sectionNumber) {
+        Fragment_disturbances fragment = new Fragment_disturbances();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public Fragment1() {
+    public Fragment_disturbances() {
     }
 
     @Override

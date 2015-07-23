@@ -31,9 +31,8 @@ import java.util.Map;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class Fragment_lines extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    HashMap<String, Integer> images = new HashMap<>();
     private SwipeRefreshLayout swipeLayout;
     /**
      * The fragment argument representing the section number for this
@@ -45,31 +44,16 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Fragment2 newInstance(int sectionNumber) {
-        Fragment2 fragment = new Fragment2();
+    public static Fragment_lines newInstance(int sectionNumber) {
+        Fragment_lines fragment = new Fragment_lines();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public Fragment2() {
-        images.put("1", R.drawable.ligne_1);
-        images.put("2", R.drawable.ligne_2);
-        images.put("3", R.drawable.ligne_3);
-        images.put("4", R.drawable.ligne_4);
-        images.put("5", R.drawable.ligne_5);
-        images.put("6", R.drawable.ligne_6);
-        images.put("7", R.drawable.ligne_7);
-        images.put("8", R.drawable.ligne_8);
-        images.put("9", R.drawable.ligne_9);
-        images.put("10", R.drawable.ligne_10);
-        images.put("13", R.drawable.ligne_13);
-        images.put("14", R.drawable.ligne_14);
-        images.put("A", R.drawable.ligne_a);
-        images.put("AERO", R.drawable.ligne_aero);
-        images.put("ARS", R.drawable.ligne_base_navale);
-        images.put("44", R.drawable.ligne_44);
+    public Fragment_lines() {
+        /* Nothing */
     }
 
     @Override
@@ -84,33 +68,28 @@ public class Fragment2 extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
             List<Map<String, String>> data = new ArrayList<Map<String, String>>();
             List<RowItem> rowItems = rowItems = new ArrayList<RowItem>();
-            try{
-                InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String json = reader.readLine();
 
-                // Instantiate a JSON object from the request response
-                JSONArray jr = new JSONArray(json);
+            InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String json = reader.readLine();
 
-                for(int i = 0; i < jr.length(); i++) {
-                    JSONObject object = (JSONObject) jr.getJSONObject(i);
-                    Map<String, String> dat = new HashMap<String, String>(2);
-                    dat.put("date", object.getString("Route_id"));
-                    dat.put("title", object.getString("Route_long_name"));
-                    RowItem item = null;
-                    if (images.get(object.getString("Route_id")) != null){
-                        item = new RowItem(images.get(object.getString("Route_id")), object.getString("Route_id"), object.getString("Route_long_name"));
-                    }
-                    else {
-                        item = new RowItem(0, object.getString("Route_id"), object.getString("Route_long_name"));
-                    }
-                    rowItems.add(item);
-                    data.add(dat);
+            // Instantiate a JSON object from the request response
+            JSONArray jr = new JSONArray(json);
+
+            for(int i = 0; i < jr.length(); i++) {
+                JSONObject object = (JSONObject) jr.getJSONObject(i);
+                Map<String, String> dat = new HashMap<String, String>(2);
+                dat.put("date", object.getString("Route_id"));
+                dat.put("title", object.getString("Route_long_name"));
+                RowItem item = null;
+                if (Utils.images.get(object.getString("Route_id")) != null){
+                    item = new RowItem(Utils.images.get(object.getString("Route_id")), object.getString("Route_id"), object.getString("Route_long_name"));
                 }
-
-            } catch(Exception e){
-                // In your production code handle any errors and catch the individual exceptions
-                e.printStackTrace();
+                else {
+                    item = new RowItem(0, object.getString("Route_id"), object.getString("Route_long_name"));
+                }
+                rowItems.add(item);
+                data.add(dat);
             }
 
             ListView listView = (ListView) rootView.findViewById(R.id.listLines);

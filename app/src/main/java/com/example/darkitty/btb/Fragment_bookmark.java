@@ -17,16 +17,19 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragment3.OnFragmentInteractionListener} interface
+ * {@link Fragment_bookmark.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragment3#newInstance} factory method to
+ * Use the {@link Fragment_bookmark#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment3 extends Fragment {
+public class Fragment_bookmark extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -37,15 +40,15 @@ public class Fragment3 extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Fragment3 newInstance(int sectionNumber) {
-        Fragment3 fragment = new Fragment3();
+    public static Fragment_bookmark newInstance(int sectionNumber) {
+        Fragment_bookmark fragment = new Fragment_bookmark();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public Fragment3() {
+    public Fragment_bookmark() {
     }
 
     @Override
@@ -70,13 +73,26 @@ public class Fragment3 extends Fragment {
 
             // Instantiate a JSON object from the request response
             JSONArray jr = new JSONArray(json2);
+            List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+            List<RowItem> rowItems = rowItems = new ArrayList<RowItem>();
 
             while((line = reader.readLine()) != null) {
                 JSONObject object = (JSONObject) jr.getJSONObject(Integer.parseInt(line));
-                json.add(object.getString("Route_long_name"));
+                Map<String, String> dat = new HashMap<String, String>(2);
+                dat.put("date", object.getString("Route_id"));
+                dat.put("title", object.getString("Route_long_name"));
+                RowItem item = null;
+                if (Utils.images.get(object.getString("Route_id")) != null){
+                    item = new RowItem(Utils.images.get(object.getString("Route_id")), object.getString("Route_id"), object.getString("Route_long_name"));
+                }
+                else {
+                    item = new RowItem(0, object.getString("Route_id"), object.getString("Route_long_name"));
+                }
+                rowItems.add(item);
+                data.add(dat);
             }
             ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
-            ArrayAdapter adapter = new ArrayAdapter<String>(rootView.getContext(),android.R.layout.simple_list_item_1,json);
+            CustomListViewAdapter adapter = new CustomListViewAdapter(rootView.getContext(), R.layout.list_item, rowItems);
             listView.setAdapter(adapter);
 
         } catch (Exception e) {
