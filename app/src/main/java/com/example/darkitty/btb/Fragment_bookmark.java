@@ -1,10 +1,12 @@
 package com.example.darkitty.btb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -95,6 +97,15 @@ public class Fragment_bookmark extends Fragment {
             ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
             CustomListViewAdapter adapter = new CustomListViewAdapter(rootView.getContext(), R.layout.list_item, rowItems);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    TextView tmp = ((TextView) view.findViewById(R.id.title));
+                    String product = tmp.getText().toString();
+                    Intent i = new Intent(getActivity().getApplicationContext(), DetailLine_tab.class);
+                    i.putExtra("LineNumber", product);
+                    startActivity(i);
+                }
+            });
 
         } catch (Exception e) {
             ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
