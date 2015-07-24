@@ -3,6 +3,7 @@ package com.example.darkitty.btb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,6 +26,7 @@ import java.util.List;
 public class Fragment_detailLine  extends Fragment {
     static String idLine;
     static String destination;
+    static ListView list;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -56,6 +59,8 @@ public class Fragment_detailLine  extends Fragment {
         this.idLine = product;
         // displaying selected product name
         getActivity().setTitle("Ligne n° " + this.idLine);
+        ListView listView2 = (ListView) rootView.findViewById(R.id.listViewStop);
+        this.list = listView2;
 
         try{
             List<String> list = new ArrayList<String>();
@@ -77,20 +82,37 @@ public class Fragment_detailLine  extends Fragment {
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, list);
             terminus.setAdapter(dataAdapter);
 
+            terminus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(parent.getContext(), "The planet is " +
+                            parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+                    JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+idLine+"&trip_headsign="+parent.getItemAtPosition(position).toString().replace(" ", "%20"));
+                    try {
+                        List<String> data = new ArrayList<String>();
+                        for(int i = 0; i < jr2.length(); i++) {
+                            JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
+                            data.add(object2.getString("Stop_name"));
+                        }
+                        ListView listView2 = Fragment_detailLine.list;
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
+                        listView2.setAdapter(adapter);
+                    } catch(Exception e){
+                        // In your production code handle any errors and catch the individual exceptions
+                        e.printStackTrace();
+                    }
+                }
 
-            List<String> data = new ArrayList<String>();
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
 
             // Instantiate a JSON object from the request response
             JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+product+"&trip_headsign="+terminus.getSelectedItem().toString().replace(" ", "%20"));
 
-            for(int i = 0; i < jr2.length(); i++) {
-                JSONObject object2 = (JSONObject) jr2.getJSONObject(i);
-                data.add(object2.getString("Stop_name"));
-            }
-
-            ListView listView2 = (ListView) rootView.findViewById(R.id.listViewStop);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, data);
-            listView2.setAdapter(adapter);
             listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Spinner terminus = (Spinner) getView().findViewById(R.id.spinnerStopDetail);
