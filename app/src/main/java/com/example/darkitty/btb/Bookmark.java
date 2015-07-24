@@ -85,9 +85,9 @@ public class Bookmark extends Activity {
                 File file = new File(sdcard, "bookmarks.txt");*/
                 File file = new File(getApplicationContext().getFilesDir(), "bookmarks.txt");
                 try {
-                    BufferedWriter wrtier = new BufferedWriter(new FileWriter(file));
-                    wrtier.write(str.toString());
-                    wrtier.close();
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                    writer.write(str.toString());
+                    writer.close();
                     Toast.makeText(Bookmark.this, "Bookmarks saved!", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
