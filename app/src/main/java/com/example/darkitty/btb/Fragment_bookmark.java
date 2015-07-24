@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -96,6 +97,10 @@ public class Fragment_bookmark extends Fragment {
             listView.setAdapter(adapter);
 
         } catch (Exception e) {
+            ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
+            listView.setVisibility(View.INVISIBLE);
+            TextView text = (TextView) rootView.findViewById(R.id.textB);
+            text.setVisibility(View.VISIBLE);
             e.printStackTrace();
         }
 
