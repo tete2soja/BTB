@@ -61,4 +61,7 @@
     <string name="title_activity_bookmark">Lesezeichen</string>
     <string name="saveButton">Sparen</string>
     <string name="destination">reiseziel</string>
+    <string name="theme">Dark theme</string>
+    <string name="theme_sum">Check to activate</string>
+    <string name="network_settings">Paramètres réseaux</string>
 </resources>

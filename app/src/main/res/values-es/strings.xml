@@ -60,4 +60,7 @@
     <string name="pref_title_add_friends_to_messages">Display name</string>
     <string name="pref_lang"></string>
     <string name="destination">El  destino es </string>
+    <string name="theme">Dark theme</string>
+    <string name="theme_sum">Check to activate</string>
+    <string name="network_settings">Paramètres réseaux</string>
 </resources>

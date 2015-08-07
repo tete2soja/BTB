@@ -25,4 +25,7 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="destination">The destination is</string>
+    <string name="theme">Dark theme</string>
+    <string name="theme_sum">Check to activate</string>
+    <string name="network_settings">Paramètres réseaux</string>
 </resources>

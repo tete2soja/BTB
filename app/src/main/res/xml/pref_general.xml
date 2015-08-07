@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory
-        android:summary="Bookmark"
-        android:title="Bookmark" >
-        <Preference android:title="Define bookmarks" android:key="bookmark"/>
+        android:summary="@string/title_activity_bookmark"
+        android:title="@string/title_activity_bookmark" >
+        <Preference android:title="@string/title_activity_bookmark" android:key="bookmark"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:summary="Network settings"
-        android:title="Network settings" >
+        android:summary="@string/network_settings"
+        android:title="@string/network_settings" >
         <EditTextPreference
             android:key="url_proxy"
             android:title="URL du proxy" />
@@ -28,7 +28,7 @@
 
         <CheckBoxPreference
             android:key="themeDark"
-            android:summary="Cocher pour activer"
-            android:title="Thèpme sombre" />
+            android:summary="@string/theme_sum"
+            android:title="@string/theme" />
     </PreferenceCategory>
 </PreferenceScreen>

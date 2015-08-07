@@ -10,8 +10,8 @@
     <string name="action_refresh">Rafraichir</string>
     <string name="title_section2">Lignes</string>
     <string name="pref_title_vibrate">Vibration</string>
-    <string name="title_activity_detail_line">DetailLine</string>
-    <string name="title_activity_detail_stop">DetailStop</string>
+    <string name="title_activity_detail_line">Informaion sur la ligne</string>
+    <string name="title_activity_detail_stop">Informations sur l\'arrêt</string>
     <string name="title_activity_main">Principale</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="title_activity_test_maps">testMaps</string>
@@ -61,4 +61,7 @@
     <string name="title_activity_bookmark">Favoris</string>
     <string name="saveButton">Sauvegarder</string>
     <string name="destination">La destination est </string>
+    <string name="theme">Dark theme</string>
+    <string name="theme_sum">Check to activate</string>
+    <string name="network_settings">Paramètres réseaux</string>
 </resources>
