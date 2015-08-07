@@ -57,7 +57,9 @@ public class Utils {
             // Instantiate a JSON object from the request response
             jr = new JSONArray(json);
         }
-        catch (Exception e) {}
+        catch (Exception e) {
+            e.getMessage();
+        }
         return jr;
     }
 }

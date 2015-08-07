@@ -60,4 +60,5 @@
     <string name="pref_lang">Sync frequency</string>
     <string name="title_activity_bookmark">Lesezeichen</string>
     <string name="saveButton">Sparen</string>
+    <string name="destination">reiseziel</string>
 </resources>

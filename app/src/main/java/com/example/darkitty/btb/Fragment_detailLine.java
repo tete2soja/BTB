@@ -85,7 +85,7 @@ public class Fragment_detailLine  extends Fragment {
             terminus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(parent.getContext(), "The planet is " +
+                    Toast.makeText(parent.getContext(), getResources().getString(R.string.destination) + " " +
                             parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
                     JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id="+idLine+"&trip_headsign="+parent.getItemAtPosition(position).toString().replace(" ", "%20"));
                     try {

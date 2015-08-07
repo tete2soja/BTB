@@ -60,4 +60,5 @@
     <string name="pref_lang">Sync frequency</string>
     <string name="title_activity_bookmark">Favoris</string>
     <string name="saveButton">Sauvegarder</string>
+    <string name="destination">La destination est </string>
 </resources>
