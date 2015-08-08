@@ -1,9 +1,18 @@
 package com.example.darkitty.btb;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -28,8 +37,25 @@ public class SettingsActivity extends PreferenceActivity {
                 button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference arg0) {
-                        Intent i = new Intent(getApplicationContext(), Bookmark.class);
+                        Intent i = new Intent(getApplicationContext(), AboutPopup.class);
                         startActivity(i);
+                        return true;
+                    }
+                });
+            }
+
+            Preference buttonAbout = (Preference)getPreferenceManager().findPreference("about");
+            if (buttonAbout != null) {
+                buttonAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                    @Override
+                    public boolean onPreferenceClick(Preference arg0) {
+                        FragmentManager manager = getFragmentManager();
+                        Fragment frag = manager.findFragmentByTag("fragment_edit_name");
+                        if (frag != null) {
+                            manager.beginTransaction().remove(frag).commit();
+                        }
+                        AboutPopup alertDialogFragment = new AboutPopup();
+                        alertDialogFragment.show(manager, "fragment_edit_name");
                         return true;
                     }
                 });

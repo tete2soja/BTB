@@ -31,4 +31,10 @@
             android:summary="@string/theme_sum"
             android:title="@string/theme" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="About"
+        android:title="About" >
+        <Preference android:title="About" android:key="about"/>
+    </PreferenceCategory>
 </PreferenceScreen>
