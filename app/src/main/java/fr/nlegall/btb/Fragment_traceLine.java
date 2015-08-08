@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.darkitty.btb.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

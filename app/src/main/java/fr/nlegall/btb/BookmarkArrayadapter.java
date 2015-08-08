@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.example.darkitty.btb.R;
 
 import java.util.List;
 

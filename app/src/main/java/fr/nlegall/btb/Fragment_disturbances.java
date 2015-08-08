@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 /**
  * Created by nlegall on 17/06/2015.
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.example.darkitty.btb.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

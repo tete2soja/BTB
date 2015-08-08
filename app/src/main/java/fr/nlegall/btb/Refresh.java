@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;

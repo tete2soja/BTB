@@ -1,21 +1,30 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
-import java.util.Locale;
-
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabListener {
+import com.example.darkitty.btb.R;
 
+import java.util.Locale;
+
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+    private static final int SETTINGS_RESULT = 1;
+    Refresh f2 = new Refresh();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -74,6 +83,41 @@ public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabLi
         }
     }
 
+    //----------------------------------------------------------------------------------------------
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==SETTINGS_RESULT)
+        {
+            displayUserSettings();
+        }
+
+    }
+
+    private void displayUserSettings()
+    {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs.getBoolean("themeDark", false);
+        this.setTheme(R.style.AppThemeDark);
+        setLocale(sharedPrefs.getString("langue", "French"));
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+    public void setLocale(String lang) {
+
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+
+        onConfigurationChanged(conf);
+    }
+    //----------------------------------------------------------------------------------------------
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,10 +135,11 @@ public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabLi
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivityForResult(i, SETTINGS_RESULT);
         }
         else if (id == R.id.action_refresh) {
-
+            //f2.refreshLines();
         }
 
         return super.onOptionsItemSelected(item);
@@ -130,16 +175,17 @@ public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabLi
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             if(position == 0)
-                return Fragment_detailLine.newInstance(position + 1);
-            else {
-                return Fragment_traceLine.newInstance(position + 1);
-            }
+                return Fragment_bookmark.newInstance(position + 1);
+            else if(position == 1)
+                return Fragment_disturbances.newInstance(position + 1);
+            else
+                return Fragment_lines.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -147,12 +193,13 @@ public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabLi
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return "Arrets".toUpperCase(l);
+                    return getString(R.string.title_section3).toUpperCase(l);
                 case 1:
-                    return "Tracer".toUpperCase(l);
+                    return getString(R.string.title_section1).toUpperCase(l);
+                case 2:
+                    return getString(R.string.title_section2).toUpperCase(l);
             }
             return null;
         }
     }
-
 }

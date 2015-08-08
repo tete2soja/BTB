@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 /**
  * Created by nlegall on 19/06/2015.
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.darkitty.btb.R;
 
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 

@@ -1,22 +1,28 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
+
+/**
+ * Created by nlegall on 17/06/2015.
+ */
+
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.darkitty.btb.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -25,14 +31,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Fragment_bookmark.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Fragment_bookmark#newInstance} factory method to
- * create an instance of this fragment.
+ * A placeholder fragment containing a simple view.
  */
-public class Fragment_bookmark extends Fragment {
+public class Fragment_lines extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+
+    private SwipeRefreshLayout swipeLayout;
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -43,44 +46,40 @@ public class Fragment_bookmark extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Fragment_bookmark newInstance(int sectionNumber) {
-        Fragment_bookmark fragment = new Fragment_bookmark();
+    public static Fragment_lines newInstance(int sectionNumber) {
+        Fragment_lines fragment = new Fragment_lines();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public Fragment_bookmark() {
+    public Fragment_lines() {
+        /* Nothing */
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_bookmark, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_second, container, false);
+
+        swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.container);
+        swipeLayout.setOnRefreshListener(this);
 
         try {
 
-            /*File sdcard = new File("/data/data/com.darkitty.bibus/");
-            File file = new File(sdcard, "bookmarks.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));*/
-            File file = new File(rootView.getContext().getFilesDir(), "bookmarks.txt");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            ArrayList<String> json = new ArrayList<String>();
-            String line;
-
-
-            InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
-            BufferedReader reader2 = new BufferedReader(new InputStreamReader(inputStream));
-            String json2 = reader2.readLine();
-
-            // Instantiate a JSON object from the request response
-            JSONArray jr = new JSONArray(json2);
             List<Map<String, String>> data = new ArrayList<Map<String, String>>();
             List<RowItem> rowItems = rowItems = new ArrayList<RowItem>();
 
-            while((line = reader.readLine()) != null) {
-                JSONObject object = (JSONObject) jr.getJSONObject(Integer.parseInt(line));
+            InputStream inputStream = rootView.getContext().getResources().openRawResource(R.raw.lines);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String json = reader.readLine();
+
+            // Instantiate a JSON object from the request response
+            JSONArray jr = new JSONArray(json);
+
+            for(int i = 0; i < jr.length(); i++) {
+                JSONObject object = (JSONObject) jr.getJSONObject(i);
                 Map<String, String> dat = new HashMap<String, String>(2);
                 dat.put("date", object.getString("Route_id"));
                 dat.put("title", object.getString("Route_long_name"));
@@ -94,7 +93,8 @@ public class Fragment_bookmark extends Fragment {
                 rowItems.add(item);
                 data.add(dat);
             }
-            ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
+
+            ListView listView = (ListView) rootView.findViewById(R.id.listLines);
             CustomListViewAdapter adapter = new CustomListViewAdapter(rootView.getContext(), R.layout.list_item, rowItems);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,15 +107,20 @@ public class Fragment_bookmark extends Fragment {
                 }
             });
 
+
         } catch (Exception e) {
-            ListView listView = (ListView) rootView.findViewById(R.id.listLinesB);
-            listView.setVisibility(View.INVISIBLE);
-            TextView text = (TextView) rootView.findViewById(R.id.textB);
-            text.setVisibility(View.VISIBLE);
             e.printStackTrace();
         }
+
 
         return rootView;
     }
 
+    @Override public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                swipeLayout.setRefreshing(false);
+            }
+        }, 5000);
+    }
 }

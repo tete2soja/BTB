@@ -1,18 +1,13 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.support.v7.app.AlertDialog;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.example.darkitty.btb.R;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On

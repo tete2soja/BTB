@@ -1,8 +1,10 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
+
+import com.example.darkitty.btb.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

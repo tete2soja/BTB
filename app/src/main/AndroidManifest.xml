@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.darkitty.btb.MainActivity"
+            android:name="fr.nlegall.btb.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,23 +32,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.darkitty.btb.SettingsActivity"
+            android:name="fr.nlegall.btb.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="com.example.darkitty.btb.DetailStop"
+            android:name="fr.nlegall.btb.DetailStop"
             android:label="@string/title_activity_detail_stop" >
         </activity>
         <activity
-            android:name="com.example.darkitty.btb.Routing"
+            android:name="fr.nlegall.btb.Routing"
             android:label="@string/title_activity_routing" >
         </activity>
         <activity
-            android:name="com.example.darkitty.btb.DetailLine_tab"
+            android:name="fr.nlegall.btb.DetailLine_tab"
             android:label="@string/title_activity_detail_line_tab" >
         </activity>
         <activity
-            android:name="com.example.darkitty.btb.Bookmark"
+            android:name="fr.nlegall.btb.Bookmark"
             android:label="@string/title_activity_bookmark" >
         </activity>
     </application>

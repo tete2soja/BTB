@@ -1,4 +1,4 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

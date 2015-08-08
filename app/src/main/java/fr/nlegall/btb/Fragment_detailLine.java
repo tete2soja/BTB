@@ -1,9 +1,8 @@
-package com.example.darkitty.btb;
+package fr.nlegall.btb;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.darkitty.btb.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
