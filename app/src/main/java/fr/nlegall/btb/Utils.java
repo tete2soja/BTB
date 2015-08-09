@@ -45,10 +45,40 @@ public class Utils {
         images2.put("26", R.drawable.ligne_26);
         images2.put("27", R.drawable.ligne_27);
         images2.put("28", R.drawable.ligne_28);
-        images2.put("A", R.drawable.ligne_a);
-        images2.put("AERO", R.drawable.ligne_aero);
-        images2.put("ARS", R.drawable.ligne_base_navale);
+        images2.put("50", R.drawable.ligne_50);
+        images2.put("51", R.drawable.ligne_51);
+        images2.put("52", R.drawable.ligne_52);
+        images2.put("53", R.drawable.ligne_53);
+        images2.put("54", R.drawable.ligne_54);
+        images2.put("55", R.drawable.ligne_55);
+        images2.put("56", R.drawable.ligne_56);
+        images2.put("57", R.drawable.ligne_57);
+        images2.put("58", R.drawable.ligne_58);
+        images2.put("59", R.drawable.ligne_59);
+        images2.put("60", R.drawable.ligne_60);
+        images2.put("61", R.drawable.ligne_61);
+        images2.put("40", R.drawable.ligne_40);
+        images2.put("41", R.drawable.ligne_41);
+        images2.put("42", R.drawable.ligne_42);
+        images2.put("43", R.drawable.ligne_43);
         images2.put("44", R.drawable.ligne_44);
+        images2.put("45", R.drawable.ligne_45);
+        images2.put("46", R.drawable.ligne_46);
+        images2.put("47", R.drawable.ligne_47);
+        images2.put("98", R.drawable.ligne_98);
+        images2.put("99", R.drawable.ligne_99);
+        images2.put("100", R.drawable.ligne_100);
+        images2.put("101", R.drawable.ligne_101);
+        images2.put("510", R.drawable.ligne_510);
+        images2.put("530", R.drawable.ligne_530);
+        images2.put("610", R.drawable.ligne_610);
+
+        images2.put("A", R.drawable.ligne_a);
+
+        images2.put("AERO", R.drawable.ligne_aero);
+        images2.put("ARS", R.drawable.ligne_ars);
+        images2.put("NAV", R.drawable.ligne_nav);
+
         images = Collections.unmodifiableMap(images2);
     }
 

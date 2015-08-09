@@ -39,7 +39,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="No data"
         android:id="@+id/nextPassage"
         android:layout_alignTop="@+id/textView2"
         android:layout_toRightOf="@+id/btnSubmit"
@@ -58,7 +58,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="No data"
         android:id="@+id/reamingTime"
         android:layout_alignTop="@+id/textView3"
         android:layout_alignLeft="@+id/nextPassage"

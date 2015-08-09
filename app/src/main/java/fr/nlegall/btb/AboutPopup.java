@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Toast;
 
 public class AboutPopup extends DialogFragment {
@@ -16,12 +17,13 @@ public class AboutPopup extends DialogFragment {
                         // set Dialog Title
                 .setTitle("About")
                         // Set Dialog Message
-            .setMessage("Author : Nicolas LE GALL\n\nSource code : https://github.com/Darkitty/btb\nLicence : MIT")
+                        .setMessage(Html.fromHtml("<u>Author :</u> Nicolas LE GALL<br/><a href=\"http://www.nlegall.fr\">http://www.nlegall.fr</a><br/><br/>" +
+                                "<u>Source code :</u> https://github.com/Darkitty/btb<br/><br/>" +
+                                "<u>Licence :</u> MIT"))
 
                         // positive button
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Pressed OK", Toast.LENGTH_SHORT).show();
                     }
                 }).create();
     }
