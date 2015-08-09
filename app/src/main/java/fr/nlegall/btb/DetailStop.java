@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class DetailStop extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout;
+    private static final int SETTINGS_RESULT = 1;
 
     String idLigne;
     String stop;
@@ -100,5 +102,26 @@ public class DetailStop extends ActionBarActivity {
             e.printStackTrace();
         }
         //this.onRefresh();
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivityForResult(i, SETTINGS_RESULT);
+        }
+        else if (id == R.id.action_refresh) {
+            //f2.refreshLines();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

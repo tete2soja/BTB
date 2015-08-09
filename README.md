@@ -21,7 +21,7 @@ A phone with Android 4.4 version or highter.
 
 ```INTERNET``` : For get informations from the web service
 
-```ACCESS_NETWORK_STATE - ACCESS_FINE_LOCATION```: Get current position for give you 
+```ACCESS_NETWORK_STATE - ACCESS_FINE_LOCATION```: Get current position for give you the route before your position and the selected stop
 
 ```READ_EXTERNAL_STORAGE - WRITE_EXTERNAL_STORAGE``` : For file caching (static files likes lines or stops) and bookmark save
 
@@ -29,9 +29,13 @@ A phone with Android 4.4 version or highter.
 
 If you like my app, you can fork it and add some news features or give me some :cake:
 
+## Contact
+
+You can send mail to btb@nlegall.fr for any questions
+
 ## Credits
 
-Author : Nicolas Le Gall (:octocat:/Darkitty)<br/>
+Author : Nicolas Le Gall (http://www.nelgall.fr - :octocat:/Darkitty)<br/>
 Web Service : Brest Métropole
 
-make with :heart:
+_make with :heart:_

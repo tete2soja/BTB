@@ -82,6 +82,12 @@ public class Utils {
         images = Collections.unmodifiableMap(images2);
     }
 
+    public Utils() {
+        try {
+            getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport/REST/getRoutes?format=xml");
+        } catch (Exception ex) {}
+    }
+
     public static JSONArray getJSON(String url)
     {
         JSONArray jr = null;

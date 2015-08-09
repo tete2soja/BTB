@@ -2,6 +2,7 @@ package fr.nlegall.btb;
 
 import java.util.Locale;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -18,6 +19,7 @@ import com.example.darkitty.btb.R;
 
 public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabListener {
 
+    private static final int SETTINGS_RESULT = 1;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -93,10 +95,11 @@ public class DetailLine_tab extends ActionBarActivity implements ActionBar.TabLi
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivityForResult(i, SETTINGS_RESULT);
         }
         else if (id == R.id.action_refresh) {
-
+            //f2.refreshLines();
         }
 
         return super.onOptionsItemSelected(item);

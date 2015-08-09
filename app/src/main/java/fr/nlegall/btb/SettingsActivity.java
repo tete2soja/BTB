@@ -32,7 +32,7 @@ public class SettingsActivity extends PreferenceActivity {
                 button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick(Preference arg0) {
-                        Intent i = new Intent(getApplicationContext(), AboutPopup.class);
+                        Intent i = new Intent(getApplicationContext(), Bookmark.class);
                         startActivity(i);
                         return true;
                     }

@@ -54,14 +54,14 @@
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
-    <string name="title_activity_detail_line_tab">DetailLine_tab</string>
+    <string name="title_activity_detail_line_tab">Détail ligne</string>
     <string name="title_activity_routing">Itinéraire</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pref_lang">Sync frequency</string>
     <string name="title_activity_bookmark">Favoris</string>
     <string name="saveButton">Sauvegarder</string>
     <string name="destination">La destination est </string>
-    <string name="theme">Dark theme</string>
+    <string name="theme">Thème sombre</string>
     <string name="theme_sum">Check to activate</string>
     <string name="network_settings">Paramètres réseaux</string>
 </resources>
