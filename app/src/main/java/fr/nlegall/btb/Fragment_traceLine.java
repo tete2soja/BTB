@@ -82,30 +82,31 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
             // Instantiate a JSON object from the request response
             JSONArray jr3 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getGeolocatedVehiclesPosition?format=json&route_id="+product+"&trip_headsign="+terminus.replace(" ", "%20"));
             Resources res = getResources();
-            for(int i = 1; i < jr3.length(); i++) {
+            for(int i = 0; i < jr3.length(); i++) {
                 JSONObject object = (JSONObject) jr3.getJSONObject(i);
                 OverlayItem overlayItem = new OverlayItem("0, 0", "0, 0", new GeoPoint(Double.valueOf(object.getString("Lat")), Double.valueOf(object.getDouble("Lon"))));
                 overlayItem.setMarker(res.getDrawable(R.drawable.icone_bus));
                 overlayItemArray.add(overlayItem);
             }
+
+            MapView mMap = (MapView) rootView.findViewById(R.id.mapLine);
+            IMapController mapController = mMap.getController();
+            RoadManager roadManager = new OSRMRoadManager();
+
+            Road road = roadManager.getRoad(waypoints);
+            Polyline roadOverlay = RoadManager.buildRoadOverlay(road, rootView.getContext());
+            mMap.getOverlays().add(roadOverlay);
+
+            ItemizedIconOverlay<OverlayItem> anotherItemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(getActivity(), overlayItemArray, null);
+            mMap.getOverlays().add(anotherItemizedIconOverlay);
+
+            mapController.setCenter(waypoints.get(1));
+            mapController.setZoom(13);
+            mMap.setMultiTouchControls(true);
+
         } catch (Exception ex) {
             ex.getMessage();
         }
-
-        MapView mMap = (MapView) rootView.findViewById(R.id.mapLine);
-        IMapController mapController = mMap.getController();
-        RoadManager roadManager = new OSRMRoadManager();
-
-        Road road = roadManager.getRoad(waypoints);
-        Polyline roadOverlay = RoadManager.buildRoadOverlay(road, rootView.getContext());
-        mMap.getOverlays().add(roadOverlay);
-
-        ItemizedIconOverlay<OverlayItem> anotherItemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(getActivity(), overlayItemArray, null);
-        mMap.getOverlays().add(anotherItemizedIconOverlay);
-
-        mapController.setCenter(waypoints.get(1));
-        mapController.setZoom(13);
-        mMap.setMultiTouchControls(true);
 
         return rootView;
     }
