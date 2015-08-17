@@ -84,7 +84,7 @@ public class Utils {
 
     public Utils() {
         try {
-            getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport/REST/getRoutes?format=xml");
+            getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=A");
         } catch (Exception ex) {}
     }
 
