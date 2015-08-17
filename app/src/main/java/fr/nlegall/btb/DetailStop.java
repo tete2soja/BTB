@@ -6,7 +6,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.darkitty.btb.R;
@@ -80,6 +83,17 @@ public class DetailStop extends ActionBarActivity {
             JSONObject object2 = (JSONObject) jr2.getJSONObject(0);
             next.setText(object2.getString("Arrival_time"));
             next2.setText(object2.getString("Remaining_time"));
+
+            JSONArray jr3 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getNextDepartures?format=json&route_id="+idLigne+"&trip_headsign="+destination.replace(" ", "%20")+"&stop_name="+stop.replace(" ", "%20"));
+
+            String[] date = new String[jr3.length()-1];
+            for(int i = 1; i < jr3.length(); i++) {
+                date[i-1] = jr3.getJSONObject(i).getString("Arrival_time");
+            }
+            Spinner np = (Spinner) findViewById(R.id.spinner);
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, date);
+            np.setAdapter(dataAdapter);
+
 
             Button btn = (Button) findViewById(R.id.btnSubmit);
             btn.setOnClickListener(new View.OnClickListener() {
