@@ -50,8 +50,10 @@ public class Routing extends ActionBarActivity implements LocationListener {
         if(locationGPS != null) {
             gp = new GeoPoint(locationGPS.getLatitude(), locationGPS.getLongitude());
         }
-        else {
+        else if(locationNet != null){
             gp = new GeoPoint(locationNet.getLatitude(), locationNet.getLongitude());
+        } else {
+            return;
         }
 
         MapView mMap = (MapView) findViewById(R.id.mapRoute);
