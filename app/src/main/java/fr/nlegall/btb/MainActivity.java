@@ -179,14 +179,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 return Fragment_bookmark.newInstance(position + 1);
             else if(position == 1)
                 return Fragment_disturbances.newInstance(position + 1);
-            else
+            else if(position == 2)
                 return Fragment_lines.newInstance(position + 1);
+            else
+                return Fragment_search.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -199,6 +201,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 2:
                     return getString(R.string.title_section2).toUpperCase(l);
+                case 3:
+                    return getString(R.string.title_section4).toUpperCase(l);
             }
             return null;
         }

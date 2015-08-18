@@ -64,4 +64,5 @@
     <string name="theme">Dark theme</string>
     <string name="theme_sum">Check to activate</string>
     <string name="network_settings">Paramètres réseaux</string>
+    <string name="title_section4">Search</string>
 </resources>
