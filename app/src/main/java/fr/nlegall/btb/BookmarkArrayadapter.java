@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.darkitty.btb.R;
-
 import java.util.List;
 
 /**

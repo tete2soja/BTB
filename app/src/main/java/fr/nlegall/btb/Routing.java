@@ -6,17 +6,12 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.darkitty.btb.R;
-
 import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.location.NominatimPOIProvider;
-import org.osmdroid.bonuspack.location.POI;
-import org.osmdroid.bonuspack.overlays.FolderOverlay;
 import org.osmdroid.bonuspack.overlays.Polyline;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
 import org.osmdroid.bonuspack.routing.Road;

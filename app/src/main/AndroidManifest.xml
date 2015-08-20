@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.darkitty.btb" >
+    package="fr.nlegall.btb" >
 
     <uses-sdk
         android:maxSdkVersion="22"
         android:minSdkVersion="10"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,7 +19,6 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

@@ -13,8 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.darkitty.btb.R;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 

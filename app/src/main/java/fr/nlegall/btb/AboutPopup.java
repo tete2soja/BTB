@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
-import android.widget.Toast;
 
 public class AboutPopup extends DialogFragment {
     @Override

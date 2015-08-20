@@ -8,11 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.example.darkitty.btb.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

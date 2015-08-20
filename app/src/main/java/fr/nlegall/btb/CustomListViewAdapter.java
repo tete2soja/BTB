@@ -3,7 +3,7 @@ package fr.nlegall.btb;
 /**
  * Created by nlegall on 19/06/2015.
  */
-import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.darkitty.btb.R;
+import java.util.List;
 
 public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 

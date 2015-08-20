@@ -3,6 +3,7 @@ package fr.nlegall.btb;
 /**
  * Created by alices on 08/08/15.
  */
+
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,8 +13,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.darkitty.btb.R;
 
 public class MyDialogFragment extends DialogFragment implements TextView.OnEditorActionListener {
 

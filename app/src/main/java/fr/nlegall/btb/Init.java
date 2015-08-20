@@ -1,16 +1,9 @@
 package fr.nlegall.btb;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
-import com.example.darkitty.btb.R;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 

@@ -18,7 +18,8 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.darkitty.btb.R;
+import com.winsontan520.wversionmanager.library.OnReceiveListener;
+import com.winsontan520.wversionmanager.library.WVersionManager;
 
 import java.util.Locale;
 
@@ -48,6 +49,19 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        WVersionManager versionManager = new WVersionManager(this);
+        versionManager.setTitle("Test");
+        versionManager.setIcon(getResources().getDrawable(R.drawable.ligne_1));
+        versionManager.setVersionContentUrl("https://dl.dropboxusercontent.com/u/36226571/checkversion.txt"); // your update content url, see the response format below
+        versionManager.checkVersion();
+        versionManager.setOnReceiveListener(new OnReceiveListener() {
+            @Override
+            public boolean onReceive(int status, String result) {
+                // implement your own compare logic here
+                return true; // return true if you want to use library's default logic & dialog
+            }
+        });
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();

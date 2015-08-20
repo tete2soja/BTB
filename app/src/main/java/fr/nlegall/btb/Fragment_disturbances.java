@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.example.darkitty.btb.R;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
