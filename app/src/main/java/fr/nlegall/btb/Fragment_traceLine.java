@@ -142,7 +142,7 @@ public class Fragment_traceLine extends Fragment implements LocationListener {
                 mMap.getOverlays().add(anotherItemizedIconOverlay);
             } catch (Exception ex) { ex.getMessage(); }
 
-            mHandler.postDelayed(m_Runnable, 30000);
+            mHandler.postDelayed(m_Runnable, 60000);
         }
     };
 
