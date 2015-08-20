@@ -1,7 +1,5 @@
 package fr.nlegall.btb;
 
-import com.example.darkitty.btb.R;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -84,7 +82,7 @@ public class Utils {
 
     public Utils() {
         try {
-            getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getDestinations?format=json&route_id=A");
+            getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStops_route?format=json&route_id=1&trip_headsign=Fort%20Montbarey");
         } catch (Exception ex) {}
     }
 
