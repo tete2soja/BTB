@@ -48,6 +48,11 @@ public class DetailStop extends ActionBarActivity {
         stop = extras.getString("departure").replace(" ", "%20");
         destination = extras.getString("destination".replace(" ", "%20"));
 
+        if(idLigne.contains("A"))
+            setTitle("Ligne " + idLigne + " - " + this.stop);
+        else
+            setTitle("Ligne n° " + idLigne + " - " + this.stop);
+
         try{
 
             JSONArray jr = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getStop?format=json&stop_name=" + this.stop);

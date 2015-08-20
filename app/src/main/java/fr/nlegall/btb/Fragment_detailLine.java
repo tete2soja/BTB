@@ -59,7 +59,12 @@ public class Fragment_detailLine  extends Fragment {
         String product = in.getStringExtra("LineNumber");
         this.idLine = product;
         // displaying selected product name
-        getActivity().setTitle("Ligne n° " + this.idLine);
+
+        if(idLine.contains("A"))
+            getActivity().setTitle("Ligne " + idLine);
+        else
+            getActivity().setTitle("Ligne n° " + idLine);
+
         ListView listView2 = (ListView) rootView.findViewById(R.id.listViewStop);
         this.list = listView2;
 
