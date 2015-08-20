@@ -2,6 +2,7 @@ package fr.nlegall.btb;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
@@ -25,6 +26,8 @@ import java.util.List;
 public class DetailStop extends ActionBarActivity {
     private SwipeRefreshLayout swipeLayout;
     private static final int SETTINGS_RESULT = 1;
+
+    public Handler mHandler;
 
     String idLigne;
     String stop;
@@ -117,10 +120,31 @@ public class DetailStop extends ActionBarActivity {
             // In your production code handle any errors and catch the individual exceptions
             e.printStackTrace();
         }
-        //this.onRefresh();
+
+        this.mHandler = new Handler();
+        this.mHandler.postDelayed(m_Runnable,5000);
     }
 
 
+
+    private final Runnable m_Runnable = new Runnable()
+    {
+        public void run()
+        {
+            try {
+                JSONArray jr2 = Utils.getJSON("https://applications002.brest-metropole.fr/WIPOD01/Transport.svc/getRemainingTimes?format=json&route_id="+idLigne+"&trip_headsign="+destination.replace(" ", "%20")+"&stop_name="+stop.replace(" ", "%20"));
+
+                TextView next = (TextView) findViewById(R.id.nextPassage);
+                TextView next2 = (TextView) findViewById(R.id.reamingTime);
+
+                JSONObject object2 = (JSONObject) jr2.getJSONObject(0);
+                next.setText(object2.getString("Arrival_time"));
+                next2.setText(object2.getString("Remaining_time"));
+            } catch (Exception ex) { ex.getMessage(); }
+
+            mHandler.postDelayed(m_Runnable, 5000);
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
