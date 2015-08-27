@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         WVersionManager versionManager = new WVersionManager(this);
         versionManager.setTitle("Test");
-        versionManager.setIcon(getResources().getDrawable(R.drawable.ligne_1));
+        versionManager.setIcon(getResources().getDrawable(R.drawable.update));
         versionManager.setVersionContentUrl("https://dl.dropboxusercontent.com/u/36226571/checkversion.txt"); // your update content url, see the response format below
         versionManager.checkVersion();
         versionManager.setOnReceiveListener(new OnReceiveListener() {
